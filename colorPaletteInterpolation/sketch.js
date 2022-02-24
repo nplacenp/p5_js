@@ -27,13 +27,19 @@ function draw() {
 
   for (var gridY = 0; gridY < tileCountY; gridY++){
     // colors for the left and right columns are set 
+    
+    // for each row, two colors are picked to be left and right
+    // for the entire row spread through all the columns
     var col1 = colorsLeft[gridY];
     var col2 = colorsRight[gridY];
 
+    // for every single segment on each row, an interpolated color
+    // is chosen from the calculated above
     for (var gridX = 0; gridX < tileCountX; gridX++){
       var amount = map(gridX, 0, tileCountX - 1, 0, 1);
 
-      // lerpColor calculated the intermediary colors
+      // lerpColor calculated the intermediary colors for 
+      // each segment in each row
       // performs 'amount' variable 
       if (interpolateShortest){
         colorMode(RGB);
@@ -56,6 +62,8 @@ function draw() {
 }
 
 function shakeColors(){
+  // tilecount Y starts off with 10 numbers so creates a list of 10 random numbers in each list
+  // as part of the intial startup of the sketch so that you're not passing 
   for (var i = 0; i < tileCountY; i++){
     colorsLeft[i] = color(random(0, 60), random(0,100), 100);
     colorsRight[i] = color(random(160, 190), 100, random(0, 100));
